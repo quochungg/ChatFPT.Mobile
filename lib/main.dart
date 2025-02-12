@@ -6,16 +6,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); // ✅ Sử dụng super.key
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange, // Màu chủ đạo cam 🍊
+        primarySwatch: Colors.orange, 
       ),
-      home: const ChatScreen(), // ✅ Đã liên kết với ChatScreen
+      home: const ChatScreen(), 
     );
   }
 }
