@@ -1,0 +1,2 @@
+C:/Users/ADMIN/OneDrive - FPT Corporation/Documents/GitHub/ChatFPT.Mobile/android/app/.cxx/Debug/135i5yj8/x86/CMakeFiles/edit_cache.dir
+C:/Users/ADMIN/OneDrive - FPT Corporation/Documents/GitHub/ChatFPT.Mobile/android/app/.cxx/Debug/135i5yj8/x86/CMakeFiles/rebuild_cache.dir
