@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import '../services/auth_service.dart';
-import 'home_screen.dart';
+import 'admin_dashboard_screen.dart'; // Import AdminDashboardScreen
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       if (success) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) => const AdminDashboardScreen()), // Chuyển đến Dashboard
         );
       }
     } catch (e) {
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFFFA07A), Colors.white], // Gradient nền mềm mại
+            colors: [Color(0xFFFFA07A), Colors.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -85,7 +85,6 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // 🟠 Logo FPT
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.asset(
@@ -94,16 +93,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         height: 100,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) {
-                          return const Text(
-                            "Không tìm thấy hình ảnh",
-                            style: TextStyle(color: Colors.red),
-                          );
+                          return const Text("Không tìm thấy hình ảnh", style: TextStyle(color: Colors.red));
                         },
                       ),
                     ),
                     const SizedBox(height: 20),
-
-                    // 🟠 Card đăng nhập
                     Container(
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
@@ -120,22 +114,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
-                            "Welcome Back!",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          ),
+                          const Text("Welcome Back!", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.black87)),
                           const SizedBox(height: 10),
-                          const Text(
-                            "Sign in to your account",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
+                          const Text("Sign in to your account", style: TextStyle(fontSize: 16, color: Colors.grey)),
                           const SizedBox(height: 20),
-
-                          // 🟠 TextField Email
                           CustomTextField(
                             controller: emailController,
                             hintText: "Enter your email",
@@ -143,8 +125,6 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             icon: Icons.email_outlined,
                           ),
                           const SizedBox(height: 15),
-
-                          // 🟠 TextField Password
                           CustomTextField(
                             controller: passwordController,
                             hintText: "Enter your password",
@@ -152,8 +132,6 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             icon: Icons.lock_outline,
                           ),
                           const SizedBox(height: 20),
-
-                          // 🟠 Nút Đăng nhập
                           isLoading
                               ? const CircularProgressIndicator()
                               : CustomButton(
@@ -161,21 +139,14 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                                   onPressed: _login,
                                   color: Colors.deepOrangeAccent,
                                 ),
-
                           const SizedBox(height: 10),
-
-                          // 🟠 Đăng ký tài khoản
                           GestureDetector(
                             onTap: () {
                               // TODO: Điều hướng đến màn hình đăng ký
                             },
                             child: const Text(
                               "Don't have an account? Sign up",
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.deepOrange,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(fontSize: 14, color: Colors.deepOrange, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
