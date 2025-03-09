@@ -1,0 +1,2 @@
+C:/Users/nguye/OneDrive/Desktop/moblieChatFPT/ChatFPT.Mobile/android/app/.cxx/Debug/43dv6w2v/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/nguye/OneDrive/Desktop/moblieChatFPT/ChatFPT.Mobile/android/app/.cxx/Debug/43dv6w2v/x86_64/CMakeFiles/rebuild_cache.dir
