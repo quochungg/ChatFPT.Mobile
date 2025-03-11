@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
+import 'package:my_app/screens/UserList.dart';
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -56,6 +57,12 @@ class AdminDashboardScreen extends StatelessWidget {
                       width: cardWidth,
                       onTap: () {
                         // Xử lý khi người dùng bấm vào Manage User
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserListScreen(),
+                          ),
+                        );
                       },
                     ),
                     DashboardCard(
