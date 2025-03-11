@@ -11,8 +11,15 @@ class FeedbackScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text('Admin - Feedback', 
+        title: const Text(
+          'Manage',
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.grey),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -27,28 +34,8 @@ class FeedbackScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Nút back và tiêu đề
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      'Manage',
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 16),
-                
+                // Removed the back button row with "Manage" text
+
                 // Welcome text
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
@@ -62,15 +49,14 @@ class FeedbackScreen extends StatelessWidget {
                       ),
                       Text(
                         'Welcome back to your panel.',
-                        style: TextStyle(
-                            fontSize: 14, color: Colors.grey),
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Feedback title
                 const Center(
                   child: Text(
@@ -78,9 +64,9 @@ class FeedbackScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Like/Dislike cards
                 Row(
                   children: [
@@ -101,7 +87,8 @@ class FeedbackScreen extends StatelessWidget {
                                 Text(
                                   '86',
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -133,7 +120,8 @@ class FeedbackScreen extends StatelessWidget {
                                 Text(
                                   '86',
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -149,16 +137,16 @@ class FeedbackScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Feedback items
                 _buildFeedbackItem('ko dc do vl', '25 hr'),
                 _buildFeedbackItem('hay qua xin vl', '25 hr'),
                 _buildFeedbackItem('cam cai thien', '25 hr'),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Pagination - Sửa lại để tránh overflow
                 Container(
                   width: double.infinity,
@@ -168,7 +156,8 @@ class FeedbackScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.keyboard_double_arrow_left, size: 16),
+                          icon: const Icon(Icons.keyboard_double_arrow_left,
+                              size: 16),
                           onPressed: () {},
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           constraints: const BoxConstraints(),
@@ -187,13 +176,15 @@ class FeedbackScreen extends StatelessWidget {
                         _buildPageButton('...', false),
                         _buildPageButton('8', false),
                         IconButton(
-                          icon: const Icon(Icons.keyboard_arrow_right, size: 16),
+                          icon:
+                              const Icon(Icons.keyboard_arrow_right, size: 16),
                           onPressed: () {},
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           constraints: const BoxConstraints(),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.keyboard_double_arrow_right, size: 16),
+                          icon: const Icon(Icons.keyboard_double_arrow_right,
+                              size: 16),
                           onPressed: () {},
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           constraints: const BoxConstraints(),
@@ -202,9 +193,9 @@ class FeedbackScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 8),
-                
+
                 // Total items text
                 Center(
                   child: Text(
