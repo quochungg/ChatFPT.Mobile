@@ -8,58 +8,58 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: QuestionListScreen(),
+      home: AnswerListScreen(),
     );
   }
 }
 
-class QuestionListScreen extends StatefulWidget {
-  const QuestionListScreen({super.key});
+class AnswerListScreen extends StatefulWidget {
+  const AnswerListScreen({super.key});
   @override
-  _QuestionListScreenState createState() => _QuestionListScreenState();
+  _AnswerListScreenState createState() => _AnswerListScreenState();
 }
 
-class _QuestionListScreenState extends State<QuestionListScreen> {
+class _AnswerListScreenState extends State<AnswerListScreen> {
   int currentPage = 1;
-  int totalPages = 8; // Tổng số trang, bạn có thể điều chỉnh dựa vào số lượng câu hỏi
+  int totalPages = 8; // Tổng số trang, bạn có thể điều chỉnh dựa vào số lượng câu trả lời
 
-  List<Map<String, String>> questions = List.generate(
+  List<Map<String, String>> answers = List.generate(
     84,
-    (index) => {'title': 'Question ${index + 1}', 'description': 'Lorem ipsum dolor, consectetur.'},
+    (index) => {'title': 'Answer ${index + 1}', 'description': 'Lorem ipsum dolor, consectetur.'},
   );
 
-  List<Map<String, String>> getQuestionsForCurrentPage() {
+  List<Map<String, String>> getAnswersForCurrentPage() {
     int startIndex = (currentPage - 1) * 10;
     int endIndex = startIndex + 10;
-    if (endIndex > questions.length) {
-      endIndex = questions.length;
+    if (endIndex > answers.length) {
+      endIndex = answers.length;
     }
-    return questions.sublist(startIndex, endIndex);
+    return answers.sublist(startIndex, endIndex);
   }
 
-  void _navigateToAddQuestionScreen() async {
+  void _navigateToAddAnswerScreen() async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EditQuestionScreen(isAddQuestion: true)),
+      MaterialPageRoute(builder: (context) => EditAnswerScreen(isAddAnswer: true)),
     );
 
     if (result != null) {
       setState(() {
-        questions.add(result);
-        totalPages = (questions.length / 10).ceil();
+        answers.add(result);
+        totalPages = (answers.length / 10).ceil();
       });
     }
   }
 
-  void _navigateToEditScreen(Map<String, String> question) async {
+  void _navigateToEditScreen(Map<String, String> answer) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EditQuestionScreen(isAddQuestion: false, question: question)),
+      MaterialPageRoute(builder: (context) => EditAnswerScreen(isAddAnswer: false, answer: answer)),
     );
 
     if (result != null) {
       setState(() {
-        questions[questions.indexOf(question)] = result;
+        answers[answers.indexOf(answer)] = result;
       });
     }
   }
@@ -70,7 +70,7 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirm deletion'),
-          content: Text('Are you sure you want to delete this question?'),
+          content: Text('Are you sure you want to delete this answer?'),
           actions: [
             TextButton(
               onPressed: () {
@@ -81,8 +81,8 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  questions.removeAt(index);
-                  totalPages = (questions.length / 10).ceil();
+                  answers.removeAt(index);
+                  totalPages = (answers.length / 10).ceil();
                 });
                 Navigator.of(context).pop();
               },
@@ -128,7 +128,6 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
       appBar: AppBar(
         title: Text('Manage'),
         centerTitle: true,
-        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -139,21 +138,21 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Question List',
+                  'Answer List',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
                   icon: Icon(Icons.add_circle, size: 30),
-                  onPressed: _navigateToAddQuestionScreen,
+                  onPressed: _navigateToAddAnswerScreen,
                 ),
               ],
             ),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
-                itemCount: getQuestionsForCurrentPage().length,
+                itemCount: getAnswersForCurrentPage().length,
                 itemBuilder: (context, index) {
-                  var question = getQuestionsForCurrentPage()[index];
+                  var answer = getAnswersForCurrentPage()[index];
                   return Card(
                     margin: EdgeInsets.symmetric(vertical: 8),
                     shape: RoundedRectangleBorder(
@@ -161,16 +160,16 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
                     ),
                     color: Colors.orange.shade50,
                     child: ListTile(
-                      leading: Icon(Icons.help_outline), // Thay đổi ở đây để dùng biểu tượng dấu ?
-                      title: Text(question['title']!),
-                      subtitle: Text(question['description']!),
+                      leading: Icon(Icons.comment),
+                      title: Text(answer['title']!),
+                      subtitle: Text(answer['description']!),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
                             icon: Icon(Icons.edit, color: Colors.green),
                             onPressed: () {
-                              _navigateToEditScreen(question);
+                              _navigateToEditScreen(answer);
                             },
                           ),
                           IconButton(
@@ -263,32 +262,32 @@ class _QuestionListScreenState extends State<QuestionListScreen> {
   }
 }
 
-class EditQuestionScreen extends StatefulWidget {
-  final Map<String, String>? question;
-  final bool isAddQuestion;
+class EditAnswerScreen extends StatefulWidget {
+  final Map<String, String>? answer;
+  final bool isAddAnswer;
 
-  EditQuestionScreen({this.question, required this.isAddQuestion});
+  EditAnswerScreen({this.answer, required this.isAddAnswer});
 
   @override
-  _EditQuestionScreenState createState() => _EditQuestionScreenState();
+  _EditAnswerScreenState createState() => _EditAnswerScreenState();
 }
 
-class _EditQuestionScreenState extends State<EditQuestionScreen> {
+class _EditAnswerScreenState extends State<EditAnswerScreen> {
   late TextEditingController titleController;
   late TextEditingController descriptionController;
 
   @override
   void initState() {
     super.initState();
-    titleController = TextEditingController(text: widget.isAddQuestion ? '' : widget.question!['title']);
-    descriptionController = TextEditingController(text: widget.isAddQuestion ? '' : widget.question!['description']);
+    titleController = TextEditingController(text: widget.isAddAnswer ? '' : widget.answer!['title']);
+    descriptionController = TextEditingController(text: widget.isAddAnswer ? '' : widget.answer!['description']);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isAddQuestion ? 'Add Question' : 'Edit Question'),
+        title: Text(widget.isAddAnswer ? 'Add Answer' : 'Edit Answer'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -302,26 +301,26 @@ class _EditQuestionScreenState extends State<EditQuestionScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Question Title',
+              'Answer Title',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextField(
               controller: titleController,
               decoration: InputDecoration(
-                hintText: 'Add question title',
+                hintText: 'Add answer title',
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
             ),
             SizedBox(height: 20),
             Text(
-              'Question Description',
+              'Answer Description',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextField(
               controller: descriptionController,
               decoration: InputDecoration(
-                hintText: 'Add question description',
+                hintText: 'Add answer description',
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
@@ -335,13 +334,13 @@ class _EditQuestionScreenState extends State<EditQuestionScreen> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
                 onPressed: () {
-                  Map<String, String> newQuestion = {
+                  Map<String, String> newAnswer = {
                     'title': titleController.text,
                     'description': descriptionController.text,
                   };
-                  Navigator.pop(context, newQuestion);
+                  Navigator.pop(context, newAnswer);
                 },
-                child: Text(widget.isAddQuestion ? 'Add' : 'Edit', style: TextStyle(fontSize: 18, color: Colors.black)),
+                child: Text(widget.isAddAnswer ? 'Add' : 'Edit', style: TextStyle(fontSize: 18, color: Colors.black)),
               ),
             ),
           ],

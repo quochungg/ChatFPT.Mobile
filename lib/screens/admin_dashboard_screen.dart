@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
-import 'package:my_app/screens/QuestionListScreen.dart';// Import trang câu hỏi
+import 'package:my_app/screens/QuestionListScreen.dart'; // Import trang câu hỏi
+import 'package:my_app/screens/AnswerListScreen.dart'; // Import trang câu trả lời
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -93,7 +94,7 @@ class AdminDashboardScreen extends StatelessWidget {
                       },
                     ),
                     DashboardCard(
-                      icon: Icons.question_answer,
+                      icon: Icons.help_outline, // Đổi biểu tượng dấu "?"
                       title: 'Question',
                       count: '83',
                       color: Colors.green,
@@ -103,7 +104,23 @@ class AdminDashboardScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const QuestionListScreen(), // Tạo màn hình câu hỏi
+                            builder: (context) => const QuestionListScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    DashboardCard(
+                      icon: Icons.comment,
+                      title: 'Answer',
+                      count: '83',
+                      color: Colors.purple,
+                      width: cardWidth,
+                      onTap: () {
+                        // Điều hướng đến trang Answer khi người dùng bấm vào
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AnswerListScreen(), 
                           ),
                         );
                       },
