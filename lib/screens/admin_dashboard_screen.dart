@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
+import 'package:my_app/screens/QuestionListScreen.dart';// Import trang câu hỏi
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -89,6 +90,22 @@ class AdminDashboardScreen extends StatelessWidget {
                       width: cardWidth,
                       onTap: () {
                         // Xử lý khi người dùng bấm vào Tag
+                      },
+                    ),
+                    DashboardCard(
+                      icon: Icons.question_answer,
+                      title: 'Question',
+                      count: '83',
+                      color: Colors.green,
+                      width: cardWidth,
+                      onTap: () {
+                        // Điều hướng đến trang Question khi người dùng bấm vào
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const QuestionListScreen(), // Tạo màn hình câu hỏi
+                          ),
+                        );
                       },
                     ),
                   ],
