@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
+import 'package:my_app/screens/tag_management_screen.dart'; // Import the TagListPage
+import 'package:my_app/screens/category_screen.dart'; // Thêm import CategoryScreen
+import 'package:my_app/screens/role_screen.dart';  // Import the new RoleScreen
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -82,13 +85,51 @@ class AdminDashboardScreen extends StatelessWidget {
                       },
                     ),
                     DashboardCard(
+                       icon: Icons.category, // Đổi icon thành category
+                       title: 'Categories', // Tiêu đề card
+                       count: '10', // Ví dụ có 10 categories
+                       color: Colors.green, // Màu sắc cho card
+                       width: cardWidth,
+                       onTap: () {
+                         // Điều hướng đến màn hình Category khi người dùng bấm vào
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                             builder: (context) => const CategoryScreen(),
+                           ),
+                         );
+                       },
+                     ),
+                      DashboardCard(
+                       icon: Icons.category, // Đổi icon thành category
+                       title: 'Manage Roles', // Tiêu đề card
+                       count: '5', // Ví dụ có 10 categories
+                       color: Colors.purpleAccent, // Màu sắc cho card
+                       width: cardWidth,
+                       onTap: () {
+                         // Điều hướng đến màn hình Category khi người dùng bấm vào
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                             builder: (context) => const RoleScreen(),
+                           ),
+                         );
+                       },
+                     ),
+                    DashboardCard(
                       icon: Icons.tag,
                       title: 'Tag',
                       count: '83',
                       color: Colors.blueAccent,
                       width: cardWidth,
                       onTap: () {
-                        // Xử lý khi người dùng bấm vào Tag
+                        // Điều hướng đến trang TagListPage khi người dùng bấm vào Tag
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TagListPage(),
+                          ),
+                        );
                       },
                     ),
                   ],
