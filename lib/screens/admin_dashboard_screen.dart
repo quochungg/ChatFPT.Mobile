@@ -4,6 +4,8 @@ import 'package:my_app/screens/UserList.dart';
 import 'package:my_app/screens/tag_management_screen.dart'; // Import the TagListPage
 import 'package:my_app/screens/category_screen.dart'; // Thêm import CategoryScreen
 import 'package:my_app/screens/role_screen.dart';  // Import the new RoleScreen
+import 'package:my_app/screens/QuestionListScreen.dart'; // Import the QuestionListScreen
+import 'package:my_app/screens/AnswerListScreen.dart'; // Import the AnswerListScreen
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -100,14 +102,13 @@ class AdminDashboardScreen extends StatelessWidget {
                          );
                        },
                      ),
-                      DashboardCard(
-                       icon: Icons.category, // Đổi icon thành category
-                       title: 'Manage Roles', // Tiêu đề card
-                       count: '5', // Ví dụ có 10 categories
-                       color: Colors.purpleAccent, // Màu sắc cho card
+                    DashboardCard(
+                       icon: Icons.security, // Biểu tượng để quản lý Role
+                       title: 'Manage Roles',
+                       count: '5',
+                       color: Colors.purpleAccent,
                        width: cardWidth,
                        onTap: () {
-                         // Điều hướng đến màn hình Category khi người dùng bấm vào
                          Navigator.push(
                            context,
                            MaterialPageRoute(
@@ -116,6 +117,38 @@ class AdminDashboardScreen extends StatelessWidget {
                          );
                        },
                      ),
+                    DashboardCard(
+                      icon: Icons.help_outline, // Đổi icon thành dấu "?"
+                      title: 'Question',
+                      count: '83',
+                      color: Colors.green,
+                      width: cardWidth,
+                      onTap: () {
+                        // Điều hướng đến trang Question khi người dùng bấm vào
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const QuestionListScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    DashboardCard(
+                      icon: Icons.comment,
+                      title: 'Answer',
+                      count: '83',
+                      color: Colors.purple,
+                      width: cardWidth,
+                      onTap: () {
+                        // Điều hướng đến trang Answer khi người dùng bấm vào
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AnswerListScreen(),
+                          ),
+                        );
+                      },
+                    ),
                     DashboardCard(
                       icon: Icons.tag,
                       title: 'Tag',
