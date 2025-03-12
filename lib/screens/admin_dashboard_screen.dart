@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
+import 'package:my_app/screens/tag_management_screen.dart'; // Import the TagListPage
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -88,7 +89,13 @@ class AdminDashboardScreen extends StatelessWidget {
                       color: Colors.blueAccent,
                       width: cardWidth,
                       onTap: () {
-                        // Xử lý khi người dùng bấm vào Tag
+                        // Điều hướng đến trang TagListPage khi người dùng bấm vào Tag
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TagListPage(),
+                          ),
+                        );
                       },
                     ),
                   ],
