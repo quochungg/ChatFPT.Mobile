@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
+import 'package:my_app/screens/role_screen.dart';  // Import the new RoleScreen
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -82,13 +83,19 @@ class AdminDashboardScreen extends StatelessWidget {
                       },
                     ),
                     DashboardCard(
-                      icon: Icons.tag,
-                      title: 'Tag',
-                      count: '83',
-                      color: Colors.blueAccent,
+                      icon: Icons.security,  // New icon for Role management
+                      title: 'Manage Roles',  // Title for the new feature
+                      count: '5', // Example count
+                      color: Colors.purpleAccent,  // New color
                       width: cardWidth,
                       onTap: () {
-                        // Xử lý khi người dùng bấm vào Tag
+                        // Navigate to the RoleScreen when tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RoleScreen(),
+                          ),
+                        );
                       },
                     ),
                   ],
