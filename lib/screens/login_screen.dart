@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
-import '../services/auth_service.dart';
+import '../services/auth_service.dart'; // Đảm bảo import đúng
 import 'admin_dashboard_screen.dart'; // Import AdminDashboardScreen
 
 class LoginScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
   late AnimationController _controller;
@@ -42,19 +42,36 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       isLoading = true;
     });
 
-    try {
-      bool success = await AuthService.login(
-        emailController.text,
-        passwordController.text,
+    // Lấy giá trị từ controller và kiểm tra xem có trống không
+    String userName = userNameController.text.trim();
+    String password = passwordController.text.trim();
+
+    // Log giá trị của userName và password để kiểm tra
+    print("Username: $userName, Password: $password");
+
+    // Kiểm tra nếu username hoặc password là rỗng hoặc null
+    if (userName.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in both fields")),
       );
+      setState(() {
+        isLoading = false;
+      });
+      return; // Dừng hàm nếu có trường trống
+    }
+
+    try {
+      // Kiểm tra đăng nhập
+      bool success = await AuthService.login(userName, password);
 
       if (success) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const AdminDashboardScreen()), // Chuyển đến Dashboard
+          MaterialPageRoute(builder: (context) => const AdminDashboardScreen()),
         );
       }
     } catch (e) {
+      // Xử lý lỗi và hiển thị thông báo
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
       );
@@ -119,10 +136,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           const Text("Sign in to your account", style: TextStyle(fontSize: 16, color: Colors.grey)),
                           const SizedBox(height: 20),
                           CustomTextField(
-                            controller: emailController,
-                            hintText: "Enter your email",
+                            controller: userNameController,
+                            hintText: "Enter your username",
                             isPassword: false,
-                            icon: Icons.email_outlined,
+                            icon: Icons.account_circle_outlined,
                           ),
                           const SizedBox(height: 15),
                           CustomTextField(
