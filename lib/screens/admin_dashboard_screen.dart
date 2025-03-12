@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/feedback_screen.dart';
 import 'package:my_app/screens/UserList.dart';
+import 'package:my_app/screens/category_screen.dart'; // Thêm import CategoryScreen
 import 'package:my_app/screens/tag_management_screen.dart'; // Import the TagListPage
 
 class AdminDashboardScreen extends StatelessWidget {
@@ -83,7 +84,23 @@ class AdminDashboardScreen extends StatelessWidget {
                       },
                     ),
                     DashboardCard(
-                      icon: Icons.tag,
+                      icon: Icons.category, // Đổi icon thành category
+                      title: 'Categories', // Tiêu đề card
+                      count: '10', // Ví dụ có 10 categories
+                      color: Colors.green, // Màu sắc cho card
+                      width: cardWidth,
+                      onTap: () {
+                        // Điều hướng đến màn hình Category khi người dùng bấm vào
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CategoryScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    DashboardCard(
+                      icon: Icons.tag, // Đây là phần giữ lại tag card
                       title: 'Tag',
                       count: '83',
                       color: Colors.blueAccent,
