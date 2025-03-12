@@ -18,6 +18,7 @@ dependencies:
 
   # Thư viện icon cho iOS
   cupertino_icons: ^1.0.8
+  http: ^0.13.3
 
 # Dependencies cho phát triển và kiểm thử
 dev_dependencies:
